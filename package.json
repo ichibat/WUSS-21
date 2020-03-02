@@ -10,6 +10,10 @@
   "dependencies": {
     "@line/bot-sdk": "../../",
     "express": "^4.16.2",
-    "ngrok": "^3.2.7"
+    "ngrok": "^3.2.7",
+    "node-red-contrib-line-messaging-api": "0.0.17"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
   }
 }

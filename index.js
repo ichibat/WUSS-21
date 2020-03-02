@@ -43,6 +43,8 @@ app.post('/callback', line.middleware(config), (req, res) => {
   }
 
   // handle events separately
+  // 配列.map(コールバック関数)　コールバック関数によって新しい配列を生成する
+
   Promise.all(req.body.events.map(handleEvent))
     .then(() => res.end())
     .catch((err) => {
@@ -121,6 +123,9 @@ function handleText(message, replyToken, source) {
 
   const buttonsImageURL = "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/%E3%81%B0%E3%82%89%E3%81%9A%E3%81%97%E3%81%AE%E6%9D%90%E6%96%99%E4%BE%8B.jpg/320px-%E3%81%B0%E3%82%89%E3%81%9A%E3%81%97%E3%81%AE%E6%9D%90%E6%96%99%E4%BE%8B.jpg";
 
+  const medical_houmon_iryou_man = "https://1.bp.blogspot.com/-c_09YwfX0og/VahRoPvLIwI/AAAAAAAAvuE/netnwrZnQLo/s800/medical_houmon_iryou_man.png";
+
+
 //modified for local server ended
 
 
@@ -158,6 +163,32 @@ function handleText(message, replyToken, source) {
           },
         }
       );
+
+  //inserted
+
+  case 'buttonss':
+    return client.replyMessage(
+      replyToken,
+      {
+        type: 'template',
+        altText: 'Buttons alt text',
+        template: {
+          type: 'buttons',
+          thumbnailImageUrl: medical_houmon_iryou_man,
+          // title: 'My button sample',
+          text: '体調はいかがですか？',
+          actions: [
+            { label: '特に変わりはないです．', type: 'postback', data: 'good',text: '特に変わりはないです．' },
+            { label: '風邪気味です．', type: 'postback', data: 'cold' ,text: '風邪気味です．'},
+            { label: '血圧が高いです．', type: 'postback', data: 'hello こんにちは', text: '血圧が高いです．' },
+            { label: '調子がいまひとつです．', type: 'postback', data: 'bad', text: '調子がいまひとつです．' },
+          ],
+        },
+      }
+    );
+  //inserted end
+
+
     case 'confirm':
       return client.replyMessage(
         replyToken,
