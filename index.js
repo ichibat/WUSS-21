@@ -9,13 +9,12 @@ const ngrok = require('ngrok');
 
 // create LINE SDK config from env variables
 const config = {
-  channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN,
-  channelSecret: process.env.CHANNEL_SECRET,
+  channelAccessToken="1cU2sTP+2lR87iLciT1K/U7KIhG5JASxQPP2XPcjousalst7roSuN5wsuv9BwRePOa0wioLUCm5XZP/8yT2pRijeMHwZu0mNrFsDKQHBt6WEOOqRR2sBwQEGLk4KfBMDKo8LA1lMRxp9yH6F74zHuwdB04t89/1O/w1cDnyilFU=",
+  channelSecret="6d1ba9091c68fda2ccc575b7da232d0c",
 };
 
 // base URL for webhook server
 let baseURL = process.env.BASE_URL;
-
 
 
 // create LINE SDK client
