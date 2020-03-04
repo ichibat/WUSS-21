@@ -13,6 +13,12 @@ const config = {
   channelSecret: process.env.CHANNEL_SECRET,
 };
 
+// start port setting moved from bottom 
+
+const port = process.env.PORT || 3000;
+
+// end
+
 // base URL for webhook server
 let baseURL = process.env.BASE_URL;
 
@@ -464,7 +470,6 @@ function handleSticker(message, replyToken) {
 }
 
 // listen on port
-const port = process.env.PORT || 3000;
 app.listen(port, () => {
   if (baseURL) {
     console.log(`listening on ${baseURL}:${port}/callback`);

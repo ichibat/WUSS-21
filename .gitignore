@@ -1,2 +1,3 @@
 /downloaded/*
 !/downloaded/.gitkeep
+setvalues.sh
