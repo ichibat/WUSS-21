@@ -224,8 +224,9 @@ function handleText(message, replyToken, source) {
         replyToken,
           {
             "type": "text",
-            "text": "Hello, World!",
-          }
+            "text": "パフォーマンスステータス（Performance Status：PS）.全身状態の指標の一つです．患者さんの日常生活の制限の程度以下のどれにあてはまりますか？",
+          },
+         
         
       );
     case 'image carousel':
