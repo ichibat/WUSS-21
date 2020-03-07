@@ -222,6 +222,10 @@ function handleText(message, replyToken, source) {
     case 'carousel':
       return client.replyMessage(
         replyToken,
+          {
+            "type": "text",
+            "text": "Hello, World!",
+          }
         
       );
     case 'image carousel':
