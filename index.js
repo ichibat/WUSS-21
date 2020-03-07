@@ -58,14 +58,14 @@ app.post('/callback', line.middleware(config), (req, res) => {
     });
 });
 
-// // simple reply function
-// const replyText = (token, texts) => {
-//   texts = Array.isArray(texts) ? texts : [texts];
-//   return client.replyMessage(
-//     token,
-//     texts.map((text) => ({ type: 'text', text }))
-//   );
-// };
+// simple reply function
+const replyText = (token, texts) => {
+  texts = Array.isArray(texts) ? texts : [texts];
+  return client.replyMessage(
+    token,
+    texts.map((text) => ({ type: 'text', text }))
+  );
+};
 
 // callback function to handle a single event
 function handleEvent(event) {
@@ -131,6 +131,8 @@ function handleText(message, replyToken, source) {
   const medical_houmon_iryou_man = "https://1.bp.blogspot.com/-c_09YwfX0og/VahRoPvLIwI/AAAAAAAAvuE/netnwrZnQLo/s800/medical_houmon_iryou_man.png";
 
 
+
+
 //modified for local server ended
 
 
@@ -179,14 +181,21 @@ function handleText(message, replyToken, source) {
         altText: 'Buttons alt text',
         template: {
           type: 'buttons',
-          thumbnailImageUrl: medical_houmon_iryou_man,
+          // thumbnailImageUrl: medical_houmon_iryou_man,
           // title: 'My button sample',
-          text: '体調はいかがですか？',
+          text: '症状はいかがですか？',
           actions: [
-            { label: '特に変わりはないです．', type: 'postback', data: 'good',text: '特に変わりはないです．' },
-            { label: '風邪気味です．', type: 'postback', data: 'cold' ,text: '風邪気味です．'},
-            { label: '血圧が高いです．', type: 'postback', data: 'hello こんにちは', text: '血圧が高いです．' },
-            { label: '調子がいまひとつです．', type: 'postback', data: 'bad', text: '調子がいまひとつです．' },
+            { label: '正常、臨床症状なし', type: 'postback', data: 'good',text: '100%' },
+            { label: '軽い臨床症状があるが正常の活動可能', type: 'postback', data: 'cold' ,text: '90%'},
+            // { label: 'かなりの臨床症状があるが努力して正常の活動可能', type: 'postback', data: 'hello こんにちは', text: '80%' },
+            // { label: '自分自身の世話はできるが正常の活動・労働は不可能．', type: 'postback', data: 'bad', text: '70%．' },
+            // { label: '自分に必要なことはできるが時々介助が必要', type: 'postback', data: 'good',text: '60%' },
+            // { label: '病状を考慮した看護および定期的な医療行為が必要', type: 'postback', data: 'cold' ,text: '50%'},
+            // { label: '動けず、適切な医療および看護が必要', type: 'postback', data: 'hello こんにちは', text: '40%' },
+            // { label: '全く動けず入院が必要だが死はさしせまっていない', type: 'postback', data: 'bad', text: '30%' },
+            // { label: '非常に重症、入院が必要で精力的な治療が必要', type: 'postback', data: 'hello こんにちは', text: '20%' },
+            // { label: '死期が切迫している', type: 'postback', data: 'bad', text: '10%' },
+            // { label: '死', type: 'postback', data: 'bad', text: '0%' },
           ],
         },
       }
@@ -213,66 +222,43 @@ function handleText(message, replyToken, source) {
     case 'carousel':
       return client.replyMessage(
         replyToken,
-        {
-          type: 'template',
-          altText: 'Carousel alt text',
-          template: {
-            type: 'carousel',
-            columns: [
-              {
-                thumbnailImageUrl: buttonsImageURL,
-                title: 'hoge',
-                text: 'fuga',
-                actions: [
-                  { label: 'Go to line.me', type: 'uri', uri: 'https://line.me' },
-                  { label: 'Say hello1', type: 'postback', data: 'hello こんにちは' },
-                ],
-              },
-              {
-                thumbnailImageUrl: buttonsImageURL,
-                title: 'hoge',
-                text: 'fuga',
-                actions: [
-                  { label: '言 hello2', type: 'postback', data: 'hello こんにちは', text: 'hello こんにちは' },
-                  { label: 'Say message', type: 'message', text: 'Rice=米' },
-                ],
-              },
-            ],
-          },
-        }
+        
       );
     case 'image carousel':
       return client.replyMessage(
         replyToken,
         {
-          type: 'template',
-          altText: 'Image carousel alt text',
-          template: {
-            type: 'image_carousel',
-            columns: [
+          "type": "text", // ①
+          "text": "Select your favorite food category or send me your location!",
+          "quickReply": { // ②
+            "items": [
               {
-                imageUrl: buttonsImageURL,
-                action: { label: 'Go to LINE', type: 'uri', uri: 'https://line.me' },
+                "type": "action", // ③
+                "imageUrl": medical_houmon_iryou_man,
+                "action": {
+                  "type": "message",
+                  "label": "Sushi",
+                  "text": "Sushi"
+                }
               },
               {
-                imageUrl: buttonsImageURL,
-                action: { label: 'Say hello1', type: 'postback', data: 'hello こんにちは' },
+                "type": "action",
+                "imageUrl": medical_houmon_iryou_man,
+                "action": {
+                  "type": "message",
+                  "label": "Tempura",
+                  "text": "Tempura"
+                }
               },
               {
-                imageUrl: buttonsImageURL,
-                action: { label: 'Say message', type: 'message', text: 'Rice=米' },
-              },
-              {
-                imageUrl: buttonsImageURL,
-                action: {
-                  label: 'datetime',
-                  type: 'datetimepicker',
-                  data: 'DATETIME',
-                  mode: 'datetime',
-                },
-              },
+                "type": "action", // ④
+                "action": {
+                  "type": "location",
+                  "label": "Send location"
+                }
+              }
             ]
-          },
+          }
         }
       );
     case 'datetime':
