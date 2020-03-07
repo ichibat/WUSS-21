@@ -222,13 +222,62 @@ function handleText(message, replyToken, source) {
     case 'carousel':
       return client.replyMessage(
         replyToken,
+        {
+          "type": "text",
+          "text": "患者さんの日常生活(PS)は以下のどれに当てはまりますか？\n０:まったく問題なく活動できる。発症前と同じ日常生活が制限なく行える。\n１:肉体的に激しい活動は制限されるが、歩行可能で、軽作業や座っての作業は行うことができる。例：軽い家事、事務作業\n２:歩行可能で、自分の身のまわりのことはすべて可能だが、作業はできない。日中の50％以上はベッド外で過ごす。\n３:限られた自分の身のまわりのことしかできない。日中の50％以上をベッドか椅子で過ごす。\n４:まったく動けない。自分の身のまわりのことはまったくできない。完全にベッドか椅子で過ごす。"
+        },
+      );
+
+      case '0':
+        return client.replyMessage(
+          replyToken,
           {
             "type": "text",
-            "text": "パフォーマンスステータス（Performance Status：PS）.全身状態の指標の一つです．患者さんの日常生活の制限の程度以下のどれにあてはまりますか？",
+            "text": "０:まったく問題なく活動できる。発症前と同じ日常生活が制限なく行える。"
           },
-         
-        
-      );
+        );
+        case '1':
+          return client.replyMessage(
+            replyToken,
+            {
+              "type": "text",
+              "text": "１:肉体的に激しい活動は制限されるが、歩行可能で、軽作業や座っての作業は行う ことができる。例：軽い家事、事務作業"
+            },
+          );
+
+          case '2':
+            return client.replyMessage(
+              replyToken,
+              {
+                "type": "text",
+                "text": "２:歩行可能で、自分の身のまわりのことはすべて可能だが、作業はできない。日中の50％以上はベッド外で過ごす。"
+              },
+            );
+            case '3':
+              return client.replyMessage(
+                replyToken,
+                {
+                  "type": "text",
+                  "text": "３:限られた自分の身のまわりのことしかできない。日中の50％以上をベッドか椅子で過ごす。"
+                },
+              );
+              case '4':
+                return client.replyMessage(
+                  replyToken,
+                  {
+                    "type": "text",
+                    "text": "４:まったく動けない。自分の身のまわりのことはまったくできない。完全にベッドか椅子で過ごす。"
+                  },
+                );
+                case '4':
+                  return client.replyMessage(
+                    replyToken,
+                    {
+                      "type": "text",
+                      "text": "１:肉体的に激しい活動は制限されるが、歩行可能で、軽作業や座っての作業は行う ことができる。例：軽い家事、事務作業"
+                    },
+                  );
+
     case 'image carousel':
       return client.replyMessage(
         replyToken,
